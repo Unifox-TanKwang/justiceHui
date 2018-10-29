@@ -31,66 +31,18 @@ void MainComponent::paint (Graphics& g)
 	float midX = getWidth() / 2, midY = getHeight() / 2;
 	float r = 50.0f;
 	Colour originalColor(50, 62, 68);
-	g.setColour(Colours::blue);
+
 	midX -= 70.0f; midY += 20.0f;
-	for (float x = -r; x <= r; x+=0.1f) {
-		for (float y = -r; y <= r; y+=0.1f) {
-			if ((x*x + y * y) <= (r * r)) {
-				g.fillRect(x+midX, y+midY, 5.0f, 5.0f);
-			}
-		}
-	}
-
-
-	for (float x = -5.0f; x <= 5.0f; x++) {
-		for (float y = -50.0f; y >= -150.f; y--) {
-			g.fillRect(x + midX, y + midY, 5.0f, 5.0f);
-		}
-	}
-
-	for (float x = 0.0f; x <= r; x++) {
-		g.fillRect(x + midX, -150.0f + x + midY, 10.0f, 10.0f);
-		g.fillRect(-x - 2 + midX, -152.0f + x + midY, 10.0f, 10.0f);
-	}
-
-	g.setColour(originalColor);
-	for (float x = -r + 20; x <= r - 20; x += 0.1f) {
-		for (float y = -r + 20; y <= r - 20; y += 0.1f) {
-			if ((x*x + y * y) <= (r - 20)*(r - 20)) {
-				g.fillRect(x + midX, y + midY, 5.0f, 5.0f);
-			}
-		}
-	}
+	drawCircle(g, midX, midY, r, Colours::blue);
+	drawRectangle(g, midX, midY, -5.0f, 5.0f, -50.0f, -150.0f, Colours::blue);
+	drawDiagonal(g, midX, midY, 0.0f, r, -150.0f, Colours::blue);
+	drawCircle(g, midX, midY, r - 20, originalColor);
 
 	midX += 140.0f; midY -= 40.0f;
-	g.setColour(Colours::pink);
-	for (float x = -r; x <= r; x += 0.1f) {
-		for (float y = -r; y <= r; y += 0.1f) {
-			if ((x*x + y * y) <= (r * r)) {
-				g.fillRect(x + midX, y + midY, 5.0f, 5.0f);
-			}
-		}
-	}
-	for (float x = -5.0f; x <= 5.0f; x++) {
-		for (float y = 50.0f; y <= 150.f; y++) {
-			g.fillRect(x + midX, y + midY, 5.0f, 5.0f);
-		}
-	}
-
-	for (float x = -r; x <= r; x++) {
-		for (float y = 95.0f; y <= 105.0f; y++) {
-			g.fillRect(x + midX, y + midY, 5.0f, 5.0f);
-		}
-	}
-
-	g.setColour(originalColor);
-	for (float x = -r + 20; x <= r - 20; x += 0.1f) {
-		for (float y = -r + 20; y <= r - 20; y += 0.1f) {
-			if ((x*x + y * y) <= (r - 20)*(r - 20)) {
-				g.fillRect(x + midX, y + midY, 5.0f, 5.0f);
-			}
-		}
-	}
+	drawCircle(g, midX, midY, r, Colours::pink);
+	drawRectangle(g, midX, midY, -5.0f, 5.0f, 50.0f, 150.0f, Colours::pink);
+	drawRectangle(g, midX, midY, -r, r, 95.0f, 105.0f, Colours::pink);
+	drawCircle(g, midX, midY, r - 20, originalColor);
 }
 
 void MainComponent::resized()
